@@ -9,7 +9,6 @@ https://docs.djangoproject.com/en/4.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.1/ref/settings/
 """
-
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -30,20 +29,29 @@ ALLOWED_HOSTS = []
 
 # Application definition
 
+# little pieces of the greater project
+# independent modules that can be third party or owned
 INSTALLED_APPS = [
     # admin settings
     'django.contrib.admin',
     # authenticating users
     'django.contrib.auth',
     'django.contrib.contenttypes',
+    'django.contrib.sessions',
     # displaying 1 time notifications
     'django.contrib.messages',
     # serving images, ets
     'django.contrib.staticfiles',
+
+
+    # own
     'playground',
+    'products',
+    # third party
     'debug_toolbar',
 ]
 
+# how security is handled etc.
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
