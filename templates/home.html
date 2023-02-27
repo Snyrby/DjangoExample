@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>Hello World</h1>
+<!-- check what user is logged in -->
+{{ request.user }}
+<!-- check if user is logged in -->
+{{ request.user.is_authenticated}}
+{% endblock %}
+<p>This is a template</p>
