@@ -11,6 +11,6 @@ class Product(models.Model):
     # blank = how the field is rendered (required or not. null = if the value can be null in the database
     price = models.DecimalField(decimal_places=2, max_digits=10000)
     summary = models.TextField()
-    featured = models.BooleanField()  # in order to not get errors since other products are built with no
+    featured = models.BooleanField(default=False)  # in order to not get errors since other products are built with no
     # featured you can do null= true, default= true
 

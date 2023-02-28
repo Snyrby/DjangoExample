@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<!-- this is used to auto create a form
+<form method='POST'> {% csrf_token %}
+  {{ form.as_p }}
+  <input type='submit' value="Save"/>
+</form>
+-->
+
+<!-- this will do a web search/open different page. If action='.' then it will send it to itself-->
+<!-- method='GET' = front end method='POST' = backend-->
+<!--
+<form action='http://www.google.com/search' method='GET'>
+<input type='text' name='q' placeholder='Your Search'/>
+  <input type='submit' value='Save'/>
+</form>
+This will take the form to a different webpage
+-->
+
+<!-- This is there it will pull data from the form
+<form method='POST'> {% csrf_token %}
+  <input type='text' name='title' placeholder='Your Title'/>
+  <input type='submit' value='Save'/>
+</form>-->
+
+<form action='.' method='POST'>{% csrf_token %}
+  {{ form.as_p }}
+  <input type='submit' value='Save'/>
+</form>
+
+{% endblock %}
