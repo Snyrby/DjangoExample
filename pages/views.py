@@ -12,5 +12,5 @@ def home_view(request, *args, **kwargs): # *args, **kwargs
     return render(request, 'home.html', {})
 
 def contact_view(request, *args, **kwargs):
-    my_context = {'my_text': 'This is about us', 'my_number': 123,  'my_list': [123, 4242, 12313]}
+    my_context = {'my_text': 'This is about us', 'my_number': 123,  'my_list': [123, 4242, 12313, 'ABC']}
     return render(request, 'contact.html', my_context)
