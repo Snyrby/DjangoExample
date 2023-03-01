@@ -14,7 +14,7 @@ def product_detail_view(request):
     return render(request, 'products/product_detail.html', context)
 
 
-''' renders in a form and saves
+''' renders in a form and saves '''
 def product_create_view(request):
     form = ProductForm(request.POST or None)
     if form.is_valid():
@@ -29,7 +29,7 @@ def product_create_view(request):
         'form': form
     }
     return render(request, 'products/product_create.html', context)
-'''
+
 
 ''' This will retrieve data from the form so it can be used for processing, etc.
 def product_create_view(request):
@@ -41,10 +41,16 @@ def product_create_view(request):
     return render(request, 'products/product_create.html', context)
 '''
 
-
+'''form for raw data and converting
 def product_create_view(request):
     form = RawProductForm()
     if request.method == 'POST':
         form = RawProductForm(request.POST)
+        if form.is_valid():
+            # now the data is good
+            print(form.cleaned_data)
+            Product.objects.create(**form.cleaned_data)
+        else:
+            print(form.errors)
     context = {'form': form}
-    return render(request, 'products/product_create.html', context)
+    return render(request, 'products/product_create.html', context)'''
