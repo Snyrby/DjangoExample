@@ -4,7 +4,10 @@ import os
 import sys
 
 # django-admin startapp 'name'
-# python manage.py make
+# python manage.py makemigrations
+# python manage.py migrate
+# python manage.py createsuperuser
+
 
 def main():
     """Run administrative tasks."""
