@@ -1,5 +1,6 @@
 from django.contrib.auth.password_validation import exceeds_maximum_length_ratio
 from django.db import models
+from django.urls import reverse
 
 # Create your models here.
 
@@ -13,4 +14,7 @@ class Product(models.Model):
     summary = models.TextField()
     featured = models.BooleanField(default=False)  # in order to not get errors since other products are built with no
     # featured you can do null= true, default= true
+
+    def get_absolute_url(self):
+        return reverse('products:product_detail', kwargs={'id': self.id})  # f'/product/{self.id}/'
 
