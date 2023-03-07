@@ -4,6 +4,18 @@ from .models import course
 from .forms import CourseModelForm
 # Create your views here.
 
+class CourseObjectMixin(object):
+    model = course
+    lookup = 'id'
+
+    def get_object(self):
+        lookup = self.kwargs.get(self.lookup)
+        obj = None
+        if lookup is not None:
+            obj = get_object_or_404(self.model, id=lookup)
+        return obj
+
+
 '''converting a function based view to class based view '''
 class CourseCreateView(View):
     template_name = 'courses/course_create.html'
@@ -38,23 +50,15 @@ class MyListView(CourseListView):
     queryset = course.objects.filter(id=1)'''
 
 '''converting a function based view to class based view '''
-class CourseView(View):
+class CourseView(CourseObjectMixin, View):
     template_name = 'courses/course_detail.html'
     def get(self, request, id=None, *args, **kwargs):
-        context = {}
-        if id is not None:
-            obj = get_object_or_404(course, id=id)
-            context['object'] = obj
+        context = {'object': self.get_object()}
         return render(request, self.template_name, context)
 
-class CourseUpdateView(View):
+class CourseUpdateView(CourseObjectMixin, View):
     template_name = 'courses/course_create.html'
-    def get_object(self):
-        id = self.kwargs.get('id')
-        obj = None
-        if id is not None:
-            obj = get_object_or_404(course, id=id)
-        return obj
+
     def get(self, request, *args, **kwargs):
         # get method
         context = {}
@@ -81,15 +85,8 @@ class CourseUpdateView(View):
         context = {'form': form}
         return render(request, self.template_name, context)
 
-class CourseDeleteView(View):
+class CourseDeleteView(CourseObjectMixin, View):
     template_name = 'courses/course_delete.html'
-
-    def get_object(self):
-        id = self.kwargs.get('id')
-        obj = None
-        if id is not None:
-            obj = get_object_or_404(course, id=id)
-        return obj
 
     def get(self, request, *args, **kwargs):
         # get method
