@@ -28,4 +28,6 @@ urlpatterns = [
     path('product/', include('products.urls')),
     # path for django toolbar
     path('__debug__/', include('debug_toolbar.urls')),
+    path('Blog/', include('Blog.urls')),
+    path('courses/', include('courses.urls')),
 ]

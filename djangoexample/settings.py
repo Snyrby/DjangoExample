@@ -50,6 +50,7 @@ INSTALLED_APPS = [
     'products',
     'pages',
     'Blog',
+    'courses',
     
     # third party
     'debug_toolbar',
